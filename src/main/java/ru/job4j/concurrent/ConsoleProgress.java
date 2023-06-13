@@ -11,9 +11,11 @@ public class ConsoleProgress implements Runnable {
     @Override
     public void run() {
         int i = 0;
+        var process = new char[] {'-', '\\', '|', '/'};
         while (!Thread.currentThread().isInterrupted()) {
-            var process = new char[] {'-', '\\', '|', '/'};
-            System.out.print("\r load: " + process[i++ % process.length]);
+            System.out.print("\r load: " + process[i]);
+            i++;
+            i = i % process.length;
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {

@@ -6,16 +6,18 @@ import java.net.URL;
 public class Wget implements Runnable {
     private final String url;
     private final int speed;
+    private final String name;
 
-    public Wget(String url, int speed) {
+    public Wget(String url, int speed, String name) {
         this.url = url;
         this.speed = speed;
+        this.name = name;
     }
 
     @Override
     public void run() {
         try (BufferedInputStream in = new BufferedInputStream(new URL(url).openStream());
-             FileOutputStream fileOutputStream = new FileOutputStream("pom_tmp.xml")) {
+             FileOutputStream fileOutputStream = new FileOutputStream(name)) {
             byte[] dataBuffer = new byte[1024];
             int bytesRead;
             long time = System.currentTimeMillis();
@@ -54,8 +56,9 @@ public class Wget implements Runnable {
     public static void main(String[] args) throws InterruptedException {
         isValid(args);
         String url = args[0];
+        String name = args[2];
         int speed = Integer.parseInt(args[1]);
-        Thread wget = new Thread(new Wget(url, speed));
+        Thread wget = new Thread(new Wget(url, speed, name));
         wget.start();
         wget.join();
 

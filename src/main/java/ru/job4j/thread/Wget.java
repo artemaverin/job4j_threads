@@ -17,7 +17,7 @@ public class Wget implements Runnable {
     @Override
     public void run() {
         try (BufferedInputStream in = new BufferedInputStream(new URL(url).openStream());
-             FileOutputStream fileOutputStream = new FileOutputStream(name)) {
+             FileOutputStream fileOutputStream = new FileOutputStream(name + ".xml")) {
             byte[] dataBuffer = new byte[1024];
             int bytesRead;
             long time = System.currentTimeMillis();
@@ -42,7 +42,7 @@ public class Wget implements Runnable {
     }
 
     public static void isValid(String[] args) {
-        if (args.length < 2) {
+        if (args.length < 3) {
             throw new IllegalArgumentException("not enough parameters");
         }
         if (!(args[0].endsWith(".xml") || args[0].endsWith(".html") || args[0].endsWith(".txt"))) {
@@ -50,6 +50,9 @@ public class Wget implements Runnable {
         }
         if (Integer.parseInt(args[1]) < 0) {
             throw new IllegalArgumentException("speed must be more than zero");
+        }
+        if (args[2].equals(" ") || args[2].equals("")) {
+            throw new IllegalArgumentException("file name must contain at least one symbol");
         }
     }
 

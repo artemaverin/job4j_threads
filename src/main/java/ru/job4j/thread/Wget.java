@@ -51,7 +51,7 @@ public class Wget implements Runnable {
         if (Integer.parseInt(args[1]) < 0) {
             throw new IllegalArgumentException("speed must be more than zero");
         }
-        if (args[2].equals(" ") || args[2].equals("")) {
+        if (" ".equals(args[2]) || "".equals(args[2])) {
             throw new IllegalArgumentException("file name must contain at least one symbol");
         }
     }

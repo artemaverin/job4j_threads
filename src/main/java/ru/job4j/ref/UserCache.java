@@ -19,4 +19,5 @@ public class UserCache {
     public List<User> findAll() {
         return List.copyOf(users.values());
     }
+
 }

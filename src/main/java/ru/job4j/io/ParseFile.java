@@ -10,7 +10,7 @@ public final class ParseFile {
         this.file = file;
     }
 
-    public String getContent(Predicate<Character> filter) throws IOException {
+    public String getContent(Predicate<Character> filter) {
         String output = "";
         try (BufferedInputStream stream = new BufferedInputStream(new FileInputStream(file))) {
             int data;
@@ -19,6 +19,8 @@ public final class ParseFile {
                     output += (char) data;
                 }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return output;
     }

@@ -9,11 +9,13 @@ public final class SaveFile {
         this.file = file;
     }
 
-    public void saveContent(String content) throws IOException {
+    public void saveContent(String content) {
         try (BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file))) {
             for (int i = 0; i < content.length(); i += 1) {
                 outputStream.write(content.charAt(i));
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

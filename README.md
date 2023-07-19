@@ -40,3 +40,5 @@ Spring
 -Spring Boot
 -Spring Web Service
 -Spring JMS
+
+В курсе производилась работа с ветками git.

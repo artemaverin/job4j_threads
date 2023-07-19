@@ -11,17 +11,17 @@ public final class ParseFile {
     }
 
     public String getContent(Predicate<Character> filter) {
-        String output = "";
+        StringBuilder builder = new StringBuilder();
         try (BufferedInputStream stream = new BufferedInputStream(new FileInputStream(file))) {
             int data;
-            while ((data = stream.read()) > 0) {
+            while ((data = stream.read()) != -1) {
                 if (filter.test((char) data)) {
-                    output += (char) data;
+                    builder.append((char) data);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return output;
+        return builder.toString();
     }
 }

@@ -40,3 +40,5 @@ Spring
 -Spring Boot
 -Spring Web Service
 -Spring JMS
+
+Объединение зафиксированных изменений

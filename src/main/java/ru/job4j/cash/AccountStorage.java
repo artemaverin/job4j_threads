@@ -12,19 +12,11 @@ public class AccountStorage {
     private final HashMap<Integer, Account> accounts = new HashMap<>();
 
     public synchronized boolean add(Account account) {
-        if (account == null) {
-            return false;
-        }
-        accounts.put(account.id(), account);
-        return accounts.containsKey(account.id());
+        return accounts.putIfAbsent(account.id(), account) != null;
     }
 
     public synchronized boolean update(Account account) {
-        if (account == null) {
-            return false;
-        }
-        Account old = accounts.get(account.id());
-        return accounts.replace(old.id(), old, account);
+        return accounts.replace(account.id(), account) != null;
     }
 
     public synchronized void delete(int id) {
@@ -36,19 +28,17 @@ public class AccountStorage {
     }
 
     public synchronized boolean transfer(int fromId, int toId, int amount) {
-        Account fromOld = accounts.get(fromId);
-        Account toOld = accounts.get(toId);
-        if (!(accounts.get(fromOld.id()).amount() >= amount)) {
-            return false;
+        boolean result = false;
+        Optional<Account> fromOld = getById(fromId);
+        Optional<Account> toOld = getById(toId);
+        if (fromOld.isPresent() && toOld.isPresent() && fromOld.get().amount() >= amount) {
+            int fromAmount = fromOld.get().amount() - amount;
+            int toAmount = toOld.get().amount() + amount;
+            Account fromNew = new Account(fromOld.get().id(), fromAmount);
+            Account toNew = new Account(toOld.get().id(), toAmount);
+            result = update(fromNew) && update(toNew);
         }
-        int fromAmount = fromOld.amount() - amount;
-        int toAmount = toOld.amount() + amount;
-        Account fromNew = new Account(fromOld.id(), fromAmount);
-        Account toNew = new Account(toOld.id(), toAmount);
-        update(fromNew);
-        update(toNew);
-        return accounts.get(fromId).amount() == fromNew.amount()
-                && accounts.get(toId).amount() == toNew.amount();
+        return result;
     }
 
 }

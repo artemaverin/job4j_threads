@@ -41,5 +41,4 @@ public class SimpleBlockingQueue<T> {
     public synchronized int getSize() {
         return queue.size();
     }
-
 }

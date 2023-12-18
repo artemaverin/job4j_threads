@@ -9,7 +9,7 @@ class SimpleBlockingQueueTest {
 
 
     @Test
-    void WhenTwoConsumersPoll() throws InterruptedException {
+    void whenTwoConsumersPoll() throws InterruptedException {
         SimpleBlockingQueue<String> queue = new SimpleBlockingQueue<>(7);
         Thread producer = new Thread(
                 () -> {

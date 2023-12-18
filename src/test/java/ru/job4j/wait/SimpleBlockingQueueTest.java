@@ -11,7 +11,7 @@ class SimpleBlockingQueueTest {
     @Test
     void WhenTwoConsumersPoll() throws InterruptedException {
         SimpleBlockingQueue<String> queue = new SimpleBlockingQueue<>(7);
-        Thread producer =new Thread(
+        Thread producer = new Thread(
                 () -> {
                     for (int i = 0; i < 7; i++) {
                         try {
@@ -22,7 +22,7 @@ class SimpleBlockingQueueTest {
                     }
                 }
         );
-        Thread consumer =new Thread(
+        Thread consumer = new Thread(
                 () -> {
                     try {
                         queue.poll();
@@ -32,7 +32,7 @@ class SimpleBlockingQueueTest {
                 }
         );
 
-        Thread consumer2 =new Thread(
+        Thread consumer2 = new Thread(
                 () -> {
                     try {
                         for (int i = 0; i < 3; i++) {

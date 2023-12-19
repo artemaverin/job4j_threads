@@ -21,7 +21,7 @@ public class SimpleBlockingQueue<T> {
     }
 
     public synchronized void offer(T value) throws InterruptedException {
-        if (queue.size() == size) {
+        while (queue.size() == size) {
             monitor.wait();
         }
         queue.add(value);
@@ -30,7 +30,7 @@ public class SimpleBlockingQueue<T> {
 
 
     public synchronized T poll() throws InterruptedException {
-        if (queue.size() == 0) {
+        while (queue.size() == 0) {
             monitor.wait();
         }
         T value = queue.poll();

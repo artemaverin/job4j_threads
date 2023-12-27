@@ -94,34 +94,4 @@ public class RolColSum {
             return sums;
         });
     }
-
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
-        int q = 0;
-        int sum = 0;
-        Sums sums = new Sums();
-
-        int[][] arr = new int[3][3];
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[i].length; j++) {
-
-                arr[i][j] = q;
-                System.out.print(arr[i][j] + "\t");
-                q++;
-
-
-            }
-            System.out.println("\n");
-        }
-        System.out.println(arr.length);
-        System.out.println(arr[1].length);
-
-        System.out.println("===========");
-
-//        RolColSum rolColSum = new RolColSum();
-        System.out.println(Arrays.toString(RolColSum.sum(arr)));
-        System.out.println(Arrays.toString(RolColSum.asyncSum(arr)));
-
-//        sums.setRowSum(sum);
-//        System.out.println(Arrays.toString(arr));
-    }
 }

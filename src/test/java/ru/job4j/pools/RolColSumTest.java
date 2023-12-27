@@ -38,4 +38,5 @@ class RolColSumTest {
         assertThat(RolColSum.asyncSum(arr)[1].getRowSum()).isEqualTo(12);
     }
 
+
 }

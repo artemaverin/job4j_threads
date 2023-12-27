@@ -55,5 +55,4 @@ public class MyParallelSearch<T> extends RecursiveTask<Integer> {
         ForkJoinPool forkJoinPool = new ForkJoinPool();
         return forkJoinPool.invoke(new MyParallelSearch<>(object, array, 0, array.length - 1));
     }
-
 }

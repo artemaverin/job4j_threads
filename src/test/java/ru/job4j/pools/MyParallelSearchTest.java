@@ -9,7 +9,7 @@ class MyParallelSearchTest {
 
 
     @Test
-    void whenIntegerType(){
+    void whenIntegerType() {
         Integer[] array = new Integer[50];
         for (int i = 0; i < array.length; i++) {
             array[i] = i + 1;
@@ -19,7 +19,7 @@ class MyParallelSearchTest {
     }
 
     @Test
-    void whenStringType(){
+    void whenStringType() {
         String[] array = new String[50];
         for (int i = 0; i < array.length; i++) {
             array[i] = String.valueOf(i + 1);
@@ -29,7 +29,7 @@ class MyParallelSearchTest {
     }
 
     @Test
-    void whenLineaSearch(){
+    void whenLineaSearch() {
         Integer[] array = new Integer[9];
         for (int i = 0; i < array.length; i++) {
             array[i] = i + 1;
@@ -39,7 +39,7 @@ class MyParallelSearchTest {
     }
 
     @Test
-    void whenParallelSearch(){
+    void whenParallelSearch() {
         Integer[] array = new Integer[10000];
         for (int i = 0; i < array.length; i++) {
             array[i] = i + 1;
@@ -49,7 +49,7 @@ class MyParallelSearchTest {
     }
 
     @Test
-    void whenObjectNotFound(){
+    void whenObjectNotFound() {
         Integer[] array = new Integer[100];
         for (int i = 0; i < array.length; i++) {
             array[i] = i + 1;

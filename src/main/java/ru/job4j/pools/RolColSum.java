@@ -1,6 +1,5 @@
 package ru.job4j.pools;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -36,20 +35,38 @@ public class RolColSum {
                     + ", colSum=" + colSum
                     + '}';
         }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Sums sums = (Sums) o;
+            return rowSum == sums.rowSum && colSum == sums.colSum;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(rowSum, colSum);
+        }
     }
 
     private static final Logger LOGGER = Logger.getGlobal();
 
     public static Sums[] sum(int[][] matrix) {
-        if ((matrix.length != matrix[0].length) || (matrix.length == 1)) {
+        int n = matrix.length;
+        if ((n != matrix[0].length) || (n == 1)) {
             throw new IllegalArgumentException("матрица не квадратная");
         }
-        Sums[] array = new Sums[matrix.length];
-        for (int i = 0; i < matrix.length; i++) {
+        Sums[] array = new Sums[n];
+        for (int i = 0; i < n; i++) {
             Sums sums = new Sums();
             int rowSum = 0;
             int colSum = 0;
-            for (int j = 0; j < matrix[i].length; j++) {
+            for (int j = 0; j < n; j++) {
                 rowSum += matrix[i][j];
                 colSum += matrix[j][i];
             }
@@ -62,13 +79,14 @@ public class RolColSum {
     }
 
     public static Sums[] asyncSum(int[][] matrix) throws ExecutionException, InterruptedException {
-        if ((matrix.length != matrix[0].length) || (matrix.length == 1)) {
+        int n = matrix.length;
+        if ((n != matrix[0].length) || (n == 1)) {
             throw new IllegalArgumentException("матрица не квадратная");
         }
-        Sums[] array = new Sums[matrix.length];
+        Sums[] array = new Sums[n];
         int k = 0;
         Map<Integer, CompletableFuture<Sums>> futures = new HashMap<>();
-        for (int i = 0; i < matrix.length; i++) {
+        for (int i = 0; i < n; i++) {
             futures.put(k, getTask(matrix, i));
             k++;
         }

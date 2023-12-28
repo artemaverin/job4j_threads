@@ -14,8 +14,7 @@ class MyParallelSearchTest {
         for (int i = 0; i < array.length; i++) {
             array[i] = i + 1;
         }
-        MyParallelSearch<Integer> search = new MyParallelSearch<>(25, array);
-        assertThat(search.start()).isEqualTo(24);
+        assertThat(MyParallelSearch.start(array, 25)).isEqualTo(24);
     }
 
     @Test
@@ -24,8 +23,7 @@ class MyParallelSearchTest {
         for (int i = 0; i < array.length; i++) {
             array[i] = String.valueOf(i + 1);
         }
-        MyParallelSearch<String> search = new MyParallelSearch<>("25", array);
-        assertThat(search.start()).isEqualTo(24);
+        assertThat(MyParallelSearch.start(array, "25")).isEqualTo(24);
     }
 
     @Test
@@ -34,8 +32,7 @@ class MyParallelSearchTest {
         for (int i = 0; i < array.length; i++) {
             array[i] = i + 1;
         }
-        MyParallelSearch<Integer> search = new MyParallelSearch<>(4, array);
-        assertThat(search.start()).isEqualTo(3);
+        assertThat(MyParallelSearch.start(array, 4)).isEqualTo(3);
     }
 
     @Test
@@ -44,8 +41,7 @@ class MyParallelSearchTest {
         for (int i = 0; i < array.length; i++) {
             array[i] = i + 1;
         }
-        MyParallelSearch<Integer> search = new MyParallelSearch<>(9999, array);
-        assertThat(search.start()).isEqualTo(9998);
+        assertThat(MyParallelSearch.start(array, 9999)).isEqualTo(9998);
     }
 
     @Test
@@ -54,8 +50,7 @@ class MyParallelSearchTest {
         for (int i = 0; i < array.length; i++) {
             array[i] = i + 1;
         }
-        MyParallelSearch<Integer> search = new MyParallelSearch<>(666, array);
-        assertThat(search.start()).isEqualTo(-1);
+        assertThat(MyParallelSearch.start(array, 666)).isEqualTo(-1);
     }
 
 }

@@ -7,8 +7,8 @@ public class MyParallelSearch<T> extends RecursiveTask<Integer> {
 
     private final T object;
     private final T[] array;
-    private  int from;
-    private  int to;
+    private final int from;
+    private final int to;
 
     public MyParallelSearch(T object, T[] array, int from, int to) {
         this.object = object;
@@ -17,15 +17,10 @@ public class MyParallelSearch<T> extends RecursiveTask<Integer> {
         this.to = to;
     }
 
-    public MyParallelSearch(T object, T[] array) {
-        this.object = object;
-        this.array = array;
-    }
-
     @Override
     protected Integer compute() {
         if ((to - from) <= 10) {
-            return search(from, to);
+            return search();
         }
         int middle = (from + to) / 2;
 
@@ -41,7 +36,7 @@ public class MyParallelSearch<T> extends RecursiveTask<Integer> {
         return Math.max(firstJoin, secondJoin);
     }
 
-    public Integer search(int from, int to) {
+    public Integer search() {
         int res = -1;
         for (int i = from; i <= to; i++) {
             if (array[i].equals(object)) {
@@ -51,8 +46,9 @@ public class MyParallelSearch<T> extends RecursiveTask<Integer> {
         return res;
     }
 
-    public Integer start() {
+    public static <T> Integer start(T[] array, T object) {
         ForkJoinPool forkJoinPool = new ForkJoinPool();
-        return forkJoinPool.invoke(new MyParallelSearch<>(object, array, 0, array.length - 1));
+        return forkJoinPool.invoke(
+                new MyParallelSearch<>(object, array, 0, array.length - 1));
     }
 }

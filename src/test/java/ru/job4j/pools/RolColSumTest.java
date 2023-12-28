@@ -44,7 +44,7 @@ class RolColSumTest {
     }
 
     @Test
-    void whenSumException(){
+    void whenSumException() {
         int q = 0;
         int[][] arr = new int[2][3];
         for (int i = 0; i < arr.length; i++) {
@@ -57,11 +57,10 @@ class RolColSumTest {
     }
 
     @Test
-    void whenAsyncSumException(){
+    void whenAsyncSumException() {
         int q = 0;
-        int[][] arr = new int[][] {{1, 2}};
+        int[][] arr = new int[][]{{1, 2}};
         assertThatThrownBy(() -> RolColSum.asyncSum(arr)).isInstanceOf(IllegalArgumentException.class);
     }
-
 
 }

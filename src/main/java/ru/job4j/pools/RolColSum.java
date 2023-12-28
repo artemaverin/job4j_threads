@@ -8,6 +8,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.logging.Logger;
 
 public class RolColSum {
+
     public static class Sums {
         private int rowSum;
         private int colSum;

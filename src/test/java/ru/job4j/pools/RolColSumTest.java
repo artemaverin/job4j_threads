@@ -21,7 +21,7 @@ class RolColSumTest {
                 q++;
             }
         }
-        RolColSum.Sums check = new RolColSum.Sums();
+        Sums check = new Sums();
         check.setRowSum(3);
         check.setColSum(9);
         assertThat(RolColSum.sum(arr)[0]).isEqualTo(check);
@@ -37,7 +37,7 @@ class RolColSumTest {
                 q++;
             }
         }
-        RolColSum.Sums check = new RolColSum.Sums();
+        Sums check = new Sums();
         check.setRowSum(12);
         check.setColSum(12);
         assertThat(RolColSum.asyncSum(arr)[1]).isEqualTo(check);

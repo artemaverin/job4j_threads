@@ -41,6 +41,7 @@ public class MyParallelSearch<T> extends RecursiveTask<Integer> {
         for (int i = from; i <= to; i++) {
             if (array[i].equals(object)) {
                 res = i;
+                break;
             }
         }
         return res;
